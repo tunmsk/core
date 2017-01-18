@@ -21,8 +21,9 @@ class Str
      * @param string $str
      * @return string
      */
-    public static function slug($str)
+   public static function slug($str)
     {
+        $str = transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0080-\uffff] remove', $str);
         $str = strtolower($str);
         $str = preg_replace('/[^a-z0-9]/i', '-', $str);
         $str = preg_replace('/-+/', '-', $str);
